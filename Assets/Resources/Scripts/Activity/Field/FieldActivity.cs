@@ -129,11 +129,32 @@ public class FieldActivity : MonoBehaviour, ICustomUpdateMono
 
             if (nearMonster != null)
             {
+                if (isBossSpawned)
+                {
+                    foreach (EnemyCharacter enemy in bosses)
+                    {
+                        if (enemy.soonAttacker.Contains(hero))
+                        {
+                            enemy.soonAttacker.Remove(hero);
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (EnemyCharacter enemy in monsters)
+                    {
+                        if (enemy.soonAttacker.Contains(hero))
+                        {
+                            enemy.soonAttacker.Remove(hero);
+                        }
+                    }
+
+                }
+
                 if (hero.soonTargetter != null)
                 {
                     if (hero.soonTargetter != nearMonster)
                     {   
-                        hero.soonTargetter.soonAttacker.Remove(hero);
                         hero.soonTargetter = nearMonster;
                         hero.soonTargetter.soonAttacker.Add(hero);
                         hero.targetUnit = hero.soonTargetter.myObject;
