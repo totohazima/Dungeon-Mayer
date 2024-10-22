@@ -21,7 +21,7 @@ public class CameraController_InGame : MonoBehaviour, ICustomUpdateMono
     public float viewSize_Default = 0f;
     public float viewSize_Tracking = 0f;
     private float xMin, xMax, yMin, yMax; //카메라 이동을 제한하는 4방향 좌표
-
+    private Vector3 viewBoxPos;
     [Header("CameraSettings")]
     public bool isZoomDisable = false; //줌 정지
     public bool isDragDisable = false; //드래그 정지
@@ -303,10 +303,12 @@ public class CameraController_InGame : MonoBehaviour, ICustomUpdateMono
 
     protected void LimitPositionSet()
     {
-        xMin = -boxSize.x / 2 + viewBox.transform.position.x;
-        xMax = boxSize.x / 2 + viewBox.transform.position.x;
-        yMin = -boxSize.y / 2 + viewBox.transform.position.y;
-        yMax = boxSize.y / 2 + viewBox.transform.position.y;
+        xMin = -boxSize.x / 2 + viewBox.position.x;
+        xMax = boxSize.x / 2 + viewBox.position.x;
+        yMin = -boxSize.y / 2 + viewBox.position.y;
+        yMax = boxSize.y / 2 + viewBox.position.y;
+
+        viewBoxPos = viewBox.position;
     }
     bool IsTouchOrClick()
     {
@@ -357,7 +359,14 @@ public class CameraController_InGame : MonoBehaviour, ICustomUpdateMono
     {
         //탐지 시야
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(viewBox.position, boxSize);
+        if (Application.isPlaying)
+        {
+            Gizmos.DrawWireCube(viewBoxPos, boxSize);
+        }
+        else
+        {
+            Gizmos.DrawWireCube(viewBox.position, boxSize);
+        }
     }
 #endif
 }
