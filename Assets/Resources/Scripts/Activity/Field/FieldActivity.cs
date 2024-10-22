@@ -10,6 +10,7 @@ using Unity.Entities.UniversalDelegates;
 public class FieldActivity : MonoBehaviour, ICustomUpdateMono
 {
     public Transform getTransform;
+    public Transform gizmosPoint;
     public FieldSpawner mySpawner;
 
     [Header("FieldInfo")]
@@ -20,7 +21,7 @@ public class FieldActivity : MonoBehaviour, ICustomUpdateMono
         private set { fieldName = value; }
     }
     public LayerMask scanLayer;
-    public Vector3 boxSize = new Vector3(1f, 1f, 1f);
+    public Vector3 fieldSize = new Vector3(1f, 1f, 1f);
     public Vector3 spawnSize = new Vector3(1f, 1f, 1f);
     [HideInInspector] public int maxBossPoint = 100;
     [Range(0, 100)] public int bossPoint = 0;
@@ -170,7 +171,7 @@ public class FieldActivity : MonoBehaviour, ICustomUpdateMono
 
         inCharacters.Clear();
 
-        Collider[] hitColliders = Physics.OverlapBox(getTransform.position, boxSize / 2, Quaternion.identity, scanLayer);
+        Collider[] hitColliders = Physics.OverlapBox(getTransform.position, fieldSize / 2, Quaternion.identity, scanLayer);
 
         // 겹친 콜라이더에 대해 처리
         foreach (Collider hitCollider in hitColliders)
@@ -223,7 +224,7 @@ public class FieldActivity : MonoBehaviour, ICustomUpdateMono
 
         }
     }
-   
+
 
 #if UNITY_EDITOR
     int segments = 100;
@@ -238,15 +239,30 @@ public class FieldActivity : MonoBehaviour, ICustomUpdateMono
                 //탐지 시야
                 Gizmos.color = Color.red;
                 Vector3 offset = new Vector3(i, i, i);
-                Gizmos.DrawWireCube(getTransform.position + offset, boxSize);
+
+                // 로컬 회전 설정
+                Matrix4x4 originalMatrix = Gizmos.matrix;
+                Gizmos.matrix = Matrix4x4.TRS(gizmosPoint.position + offset, gizmosPoint.rotation, Vector2.one);
+
+                Gizmos.DrawWireCube(Vector2.zero, fieldSize);
+
+                // 매트릭스 원래대로 돌리기
+                Gizmos.matrix = originalMatrix;
             }
+
             //필드 내 스폰 범위
             Gizmos.color = Color.cyan;
-            Gizmos.DrawWireCube(getTransform.position, spawnSize);
 
+            // 로컬 회전 설정
+            Matrix4x4 spawnMatrix = Matrix4x4.TRS(gizmosPoint.position, gizmosPoint.rotation, Vector2.one);
+            Gizmos.matrix = spawnMatrix;
+
+            Gizmos.DrawWireCube(Vector2.zero, spawnSize);
+
+            // 매트릭스 원래대로 돌리기
+            Gizmos.matrix = spawnMatrix;
         }
     }
-
-   
 #endif
+
 }

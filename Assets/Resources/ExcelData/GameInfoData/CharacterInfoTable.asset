@@ -16,40 +16,40 @@ MonoBehaviour:
   - characterCode: Hunter0
     characterName: "\uD5CC\uD130 0"
     characterClass: "\uC804\uC0AC"
-    characterCostumeCode: Dresscostume17
+    characterCostumeCode: Dresscostume01
   - characterCode: Hunter1
     characterName: "\uD5CC\uD130 1"
     characterClass: "\uC804\uC0AC"
-    characterCostumeCode: Dresscostume19
+    characterCostumeCode: Dresscostume02
   - characterCode: Hunter2
     characterName: "\uD5CC\uD130 2"
     characterClass: "\uC804\uC0AC"
-    characterCostumeCode: Dresscostume30
+    characterCostumeCode: Dresscostume03
   - characterCode: Hunter3
     characterName: "\uD5CC\uD130 3"
     characterClass: "\uC804\uC0AC"
-    characterCostumeCode: Dresscostume31
+    characterCostumeCode: Dresscostume04
   - characterCode: Hunter4
     characterName: "\uD5CC\uD130 4"
     characterClass: "\uC804\uC0AC"
-    characterCostumeCode: Dresscostume32
+    characterCostumeCode: Dresscostume05
   - characterCode: Hunter5
     characterName: "\uD5CC\uD130 5"
     characterClass: "\uC804\uC0AC"
-    characterCostumeCode: Dresscostume47
+    characterCostumeCode: Dresscostume06
   - characterCode: Hunter6
     characterName: "\uD5CC\uD130 6"
     characterClass: "\uC804\uC0AC"
-    characterCostumeCode: Dresscostume51
+    characterCostumeCode: Dresscostume07
   - characterCode: Hunter7
     characterName: "\uD5CC\uD130 7"
     characterClass: "\uC804\uC0AC"
-    characterCostumeCode: Dresscostume68
+    characterCostumeCode: Dresscostume08
   - characterCode: Hunter8
     characterName: "\uD5CC\uD130 8"
     characterClass: "\uC804\uC0AC"
-    characterCostumeCode: Dresscostume75
+    characterCostumeCode: Dresscostume09
   - characterCode: Hunter9
     characterName: "\uD5CC\uD130 9"
     characterClass: "\uC804\uC0AC"
-    characterCostumeCode: Dresscostume122
+    characterCostumeCode: Dresscostume10

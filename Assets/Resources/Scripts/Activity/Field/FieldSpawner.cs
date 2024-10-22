@@ -117,7 +117,7 @@ public class FieldSpawner : MonoBehaviour, ICustomUpdateMono
                 0
             );
 
-            Vector3 targetPos = fieldActivity.getTransform.position + randomPositionWithinBox;
+            Vector3 targetPos = fieldActivity.gizmosPoint.position + randomPositionWithinBox;
             pos.Add(targetPos);
         }
         return pos;

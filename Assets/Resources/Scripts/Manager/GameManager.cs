@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     private void ScriptInit()
     {
         gameDataBase.InitInstance();
-        PoolManager.InitInstance();    
+        PoolManager.InitInstance();
     }
 
     /// <summary>

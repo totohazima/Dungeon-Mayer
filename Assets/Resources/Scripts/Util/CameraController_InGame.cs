@@ -16,6 +16,7 @@ public class CameraController_InGame : MonoBehaviour, ICustomUpdateMono
     public float maxZoom;
     public float currentZoom;
     [Header("CameraViewBox")]
+    public Transform viewBox;
     public Vector3 boxSize = new Vector3(1f, 1f, 1f);
     public float viewSize_Default = 0f;
     public float viewSize_Tracking = 0f;
@@ -44,6 +45,8 @@ public class CameraController_InGame : MonoBehaviour, ICustomUpdateMono
             cameraTransform = transform;
 
         Recycle();
+
+        LimitPositionSet();
     }
 
     private void Recycle()
@@ -70,7 +73,7 @@ public class CameraController_InGame : MonoBehaviour, ICustomUpdateMono
             ReduceDirectionForce();
             UpdateCameraPosition();
         }
-        LimitPositionSet();
+        
         ClampCamera();
         
     }
@@ -300,10 +303,10 @@ public class CameraController_InGame : MonoBehaviour, ICustomUpdateMono
 
     protected void LimitPositionSet()
     {
-        xMin = -boxSize.x / 2;
-        xMax = boxSize.x / 2;
-        yMin = -boxSize.y / 2;
-        yMax = boxSize.y / 2;
+        xMin = -boxSize.x / 2 + viewBox.transform.position.x;
+        xMax = boxSize.x / 2 + viewBox.transform.position.x;
+        yMin = -boxSize.y / 2 + viewBox.transform.position.y;
+        yMax = boxSize.y / 2 + viewBox.transform.position.y;
     }
     bool IsTouchOrClick()
     {
@@ -354,7 +357,7 @@ public class CameraController_InGame : MonoBehaviour, ICustomUpdateMono
     {
         //탐지 시야
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(transform.position, boxSize);
+        Gizmos.DrawWireCube(viewBox.position, boxSize);
     }
 #endif
 }

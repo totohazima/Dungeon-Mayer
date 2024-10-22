@@ -1013,6 +1013,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 860316086}
+  - {fileID: 751128633}
   m_Father: {fileID: 1644048960}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &51005287
@@ -1028,12 +1029,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   getTransform: {fileID: 51005286}
+  gizmosPoint: {fileID: 751128633}
   mySpawner: {fileID: 0}
   fieldName: 1
   scanLayer:
     serializedVersion: 2
     m_Bits: 256
-  boxSize: {x: 4, y: 12, z: 1}
+  fieldSize: {x: 4, y: 12, z: 1}
   spawnSize: {x: 4, y: 12, z: 1}
   maxBossPoint: 100
   bossPoint: 0
@@ -26003,6 +26005,37 @@ PolygonCollider2D:
       - {x: 0.5444391, y: -0.096829444}
       - {x: 0.522, y: 0.734}
   m_UseDelaunayMesh: 0
+--- !u!1 &727567789
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 727567790}
+  m_Layer: 0
+  m_Name: ViewBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &727567790
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727567789}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.6, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 777052603}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &730105461
 GameObject:
   m_ObjectHideFlags: 0
@@ -26388,6 +26421,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!1 &751128632
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 751128633}
+  m_Layer: 0
+  m_Name: gizmosPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &751128633
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751128632}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 51005286}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &752279308
 GameObject:
   m_ObjectHideFlags: 0
@@ -27422,6 +27486,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 527401184}
+  - {fileID: 727567790}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &777052605
@@ -27460,7 +27525,8 @@ MonoBehaviour:
   minZoom: 2
   maxZoom: 7
   currentZoom: 0
-  boxSize: {x: 45.3, y: 25.65, z: 1}
+  viewBox: {fileID: 727567790}
+  boxSize: {x: 32, y: 21, z: 1}
   viewSize_Default: 3.3
   viewSize_Tracking: 2.5
   isZoomDisable: 0
@@ -37130,6 +37196,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1364499621
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1364499622}
+  m_Layer: 0
+  m_Name: gizmosPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1364499622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364499621}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1707134553}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1368002931
 GameObject:
   m_ObjectHideFlags: 0
@@ -38109,6 +38206,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 314257722}
+  - {fileID: 1633129312}
   - {fileID: 126805779}
   - {fileID: 862740420}
   - {fileID: 1850269705}
@@ -38128,13 +38226,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   getTransform: {fileID: 1419038789}
+  gizmosPoint: {fileID: 1633129312}
   mySpawner: {fileID: 314257723}
   fieldName: 0
   scanLayer:
     serializedVersion: 2
     m_Bits: 256
-  boxSize: {x: 11, y: 6, z: 1}
-  spawnSize: {x: 7, y: 3.5, z: 1}
+  fieldSize: {x: 11, y: 6, z: 1}
+  spawnSize: {x: 6, y: 4, z: 1}
   maxBossPoint: 100
   bossPoint: 0
   isBossSpawned: 0
@@ -41823,6 +41922,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!1 &1633129311
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1633129312}
+  m_Layer: 0
+  m_Name: gizmosPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1633129312
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633129311}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1419038789}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1637942147
 GameObject:
   m_ObjectHideFlags: 0
@@ -42548,6 +42678,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 243682334}
+  - {fileID: 1364499622}
   m_Father: {fileID: 1644048960}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1707134554
@@ -42563,13 +42694,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   getTransform: {fileID: 1707134553}
+  gizmosPoint: {fileID: 1364499622}
   mySpawner: {fileID: 0}
   fieldName: 2
   scanLayer:
     serializedVersion: 2
     m_Bits: 256
-  boxSize: {x: 15, y: 4, z: 1}
-  spawnSize: {x: 15, y: 4, z: 1}
+  fieldSize: {x: 15, y: 4, z: 1}
+  spawnSize: {x: 11.6, y: 4, z: 1}
   maxBossPoint: 100
   bossPoint: 0
   isBossSpawned: 0
@@ -95240,7 +95372,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1808028460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95290,7 +95422,7 @@ Canvas:
   m_GameObject: {fileID: 1808028459}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 777052602}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -102513,7 +102645,7 @@ RectTransform:
   m_Father: {fileID: 6797640749649765772}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -102591,7 +102723,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 9.329956, y: -9.37001}
+  m_AnchoredPosition: {x: 9.329956, y: -9.370056}
   m_SizeDelta: {x: 210, y: 210}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &4488769465200495362
@@ -102679,7 +102811,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 192, y: 15}
+  m_SizeDelta: {x: 192, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &4770599870856707296
 RectTransform:
@@ -102759,7 +102891,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 0
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 0
   m_Viewport: {fileID: 8418772915863054167}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 1057268462905271055}
@@ -103014,9 +103146,9 @@ RectTransform:
   m_Father: {fileID: 4770599870856707296}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8433751132161438897
 CanvasRenderer:

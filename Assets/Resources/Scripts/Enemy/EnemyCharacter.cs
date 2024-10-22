@@ -72,7 +72,7 @@ public class EnemyCharacter : Character
 
         yield return new WaitForSeconds(randomMoveTime);
 
-        Vector3 boxSize = FieldManager.instance.fields[(int)field].boxSize;
+        Vector3 boxSize = FieldManager.instance.fields[(int)field].fieldSize;
         // 오버랩 박스 내에서 무작위 위치 생성
         Vector3 randomPositionWithinBox = new Vector3(
             Random.Range(-boxSize.x / 2, boxSize.x / 2),
