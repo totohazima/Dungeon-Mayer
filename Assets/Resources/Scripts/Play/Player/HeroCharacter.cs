@@ -304,7 +304,7 @@ public class HeroCharacter : Character, IPointerClickHandler
                 onTargetBuildingPos = false;
             }
 
-            if (!onTargetBuildingPos)
+            if (!onTargetBuildingPos && !isWaitingBuilding)
             {
                 onTargetBuildingPos = true;
 
