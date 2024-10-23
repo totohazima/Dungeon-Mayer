@@ -167,7 +167,7 @@ Transform:
   m_GameObject: {fileID: 1991463545}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -79558,7 +79558,7 @@ MonoBehaviour:
   - key: AngelSwordFX
     renderers:
     - {fileID: 1114686441188680006}
-  dressCostume_Code: Dresscostume122
+  dressCostume_Code: Dresscostume10
 --- !u!1 &3180307764863694625
 GameObject:
   m_ObjectHideFlags: 0
@@ -79814,6 +79814,7 @@ MonoBehaviour:
   spriteGroup: {fileID: 0}
   popupCenter: {fileID: 1283672111306124331}
   dropCenter: {fileID: 0}
+  attackRangeCenter: {fileID: 1991463546}
   isInvincible: 1
   isUntargetted: 0
   isStopScanning: 0
@@ -85669,7 +85670,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &339614626150239491
 Transform:
   m_ObjectHideFlags: 0

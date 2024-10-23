@@ -142,9 +142,12 @@ public class Building : FieldObject, ICustomUpdateMono
     {
         if (drawWhenSelected)
         {
-            //Å½Áö ½Ã¾ß
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireCube(interactionCenter.position, interactionRange);
+            if (interactionCenter != null)
+            {
+                //Å½Áö ½Ã¾ß
+                Gizmos.color = Color.red;
+                Gizmos.DrawWireCube(interactionCenter.position, interactionRange);
+            }
         }
     }
 #endif

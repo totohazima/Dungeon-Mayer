@@ -42,62 +42,16 @@ public class FieldManager : MonoBehaviour
         AllFieldSpawn();
     }
 
-    private void HeroSpawn()
+    protected void HeroSpawn()
     {
-        List<Vector3> pos = new List<Vector3>();
-        pos = SpawnPointSet(spawnHeroCount);
-
-        for (int i = 0; i < pos.Count; i++)
+        foreach(FieldActivity activity in fields)
         {
-            GameObject heroPrefab = Resources.Load<GameObject>("Prefabs/Player/Hero");
-
-            HeroCharacter character = heroPrefab.GetComponent<HeroCharacter>();
-            CharacterInfoTable.Data data = GameManager.instance.gameDataBase.characterInfoTable.table[i];
-
-            character.code = data.characterCode;
-            character.characterName = data.characterName;
-            character.jobClass = data.characterClass;
-            character.characterCostume.dressCostume_Code = data.characterCostumeCode;
-
-            GameObject hero = PoolManager.instance.Spawn(character.gameObject, pos[i], Vector3.one, Quaternion.identity, true, spawnPool);
-            TestAlgorithm algorithm = hero.GetComponent<TestAlgorithm>();
-            if (i <= 4)
+            if(activity.FieldName == FieldMap.Field.VILLAGE)
             {
-                algorithm.targetField = FieldMap.Field.DESERT;
+                activity.mySpawner.HeroSpawn(spawnHeroCount);
             }
-            else
-            {
-                algorithm.targetField = FieldMap.Field.SNOW;
-            }
-
-            HeroCharacter heroCharacter = hero.GetComponent<HeroCharacter>();
-            heroList.Add(heroCharacter);
         }
     }
-    protected List<Vector3> SpawnPointSet(int count)
-    {
-        //매번 새로운 시드로 설정
-        Random.InitState(System.DateTime.Now.Millisecond);
-
-        FieldActivity fieldActivity = fields[(int)FieldMap.Field.VILLAGE];
-        List<Vector3> pos = new List<Vector3>();
-
-        for (int i = 0; i < count; i++)
-        {
-            Vector3 boxSize = fieldActivity.spawnSize;
-            // 오버랩 박스 내에서 무작위 위치 생성
-            Vector3 randomPositionWithinBox = new Vector3(
-                Random.Range(-boxSize.x / 2, boxSize.x / 2),
-                Random.Range(-boxSize.y / 2, boxSize.y / 2),
-                0
-            );
-
-            Vector3 targetPos = fieldActivity.gizmosPoint.position + randomPositionWithinBox;
-            pos.Add(targetPos);
-        }
-        return pos;
-    }
-
 
     public void AllFieldSpawn()
     {

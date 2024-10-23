@@ -91,6 +91,7 @@ public class FieldActivity : MonoBehaviour, ICustomUpdateMono
                 if (hero.targetUnit != null)
                 {
                     shortDistance = Vector3.Distance(hero.myObject.position, hero.targetUnit.position);
+                    nearMonster = hero.soonTargetter;
                 }
 
                 float dis = Vector3.Distance(hero.myObject.position, enemy.myObject.position);
@@ -103,9 +104,9 @@ public class FieldActivity : MonoBehaviour, ICustomUpdateMono
 
             if (nearMonster != null)
             {
-                foreach(EnemyCharacter enemy in  allEnemies)
+                foreach (EnemyCharacter enemy in allEnemies)
                 {
-                    if(enemy.soonAttacker.Contains(hero))
+                    if (enemy.soonAttacker.Contains(hero))
                     {
                         enemy.soonAttacker.Remove(hero);
                     }
@@ -215,33 +216,20 @@ public class FieldActivity : MonoBehaviour, ICustomUpdateMono
     {
         if (drawWhenSelected)
         {
-            for (float i = -0.02f; i <= 0.02f; i += 0.02f)
+            if (gizmosPoint != null)
             {
-                //탐지 시야
-                Gizmos.color = Color.red;
-                Vector3 offset = new Vector3(i, i, i);
+                for (float i = -0.02f; i <= 0.02f; i += 0.02f)
+                {
+                    //탐지 시야
+                    Gizmos.color = Color.red;
+                    Vector3 offset = new Vector3(i, i, i);
+                    Gizmos.DrawWireCube(gizmosPoint.position, fieldSize);
+                }
 
-                // 로컬 회전 설정
-                Matrix4x4 originalMatrix = Gizmos.matrix;
-                Gizmos.matrix = Matrix4x4.TRS(gizmosPoint.position + offset, gizmosPoint.rotation, Vector2.one);
-
-                Gizmos.DrawWireCube(Vector2.zero, fieldSize);
-
-                // 매트릭스 원래대로 돌리기
-                Gizmos.matrix = originalMatrix;
+                //필드 내 스폰 범위
+                Gizmos.color = Color.cyan;
+                Gizmos.DrawWireCube(gizmosPoint.position, spawnSize);
             }
-
-            //필드 내 스폰 범위
-            Gizmos.color = Color.cyan;
-
-            // 로컬 회전 설정
-            Matrix4x4 spawnMatrix = Matrix4x4.TRS(gizmosPoint.position, gizmosPoint.rotation, Vector2.one);
-            Gizmos.matrix = spawnMatrix;
-
-            Gizmos.DrawWireCube(Vector2.zero, spawnSize);
-
-            // 매트릭스 원래대로 돌리기
-            Gizmos.matrix = spawnMatrix;
         }
     }
 #endif

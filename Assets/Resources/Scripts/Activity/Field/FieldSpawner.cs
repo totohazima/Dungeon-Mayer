@@ -1,3 +1,4 @@
+using FieldHelper;
 using GameSystem;
 using System.Collections;
 using System.Collections.Generic;
@@ -67,6 +68,38 @@ public class FieldSpawner : MonoBehaviour, ICustomUpdateMono
         pos = SpawnPointSet(count);
         UnitSpawn(prefabs, count, pos);
 
+    }
+    public void HeroSpawn(int count)
+    {
+        List<Vector3> pos = new List<Vector3>();
+        pos = SpawnPointSet(count);
+
+        for (int i = 0; i < pos.Count; i++)
+        {
+            GameObject heroPrefab = Resources.Load<GameObject>("Prefabs/Player/Hero");
+
+            HeroCharacter character = heroPrefab.GetComponent<HeroCharacter>();
+            CharacterInfoTable.Data data = GameManager.instance.gameDataBase.characterInfoTable.table[i];
+
+            character.code = data.characterCode;
+            character.characterName = data.characterName;
+            character.jobClass = data.characterClass;
+            character.characterCostume.dressCostume_Code = data.characterCostumeCode;
+
+            GameObject hero = PoolManager.instance.Spawn(character.gameObject, pos[i], Vector3.one, Quaternion.identity, true, FieldManager.instance.spawnPool);
+            TestAlgorithm algorithm = hero.GetComponent<TestAlgorithm>();
+            if (i <= 4)
+            {
+                algorithm.targetField = FieldMap.Field.DESERT;
+            }
+            else
+            {
+                algorithm.targetField = FieldMap.Field.SNOW;
+            }
+
+            HeroCharacter heroCharacter = hero.GetComponent<HeroCharacter>();
+            FieldManager.instance.heroList.Add(heroCharacter);
+        }
     }
 
     protected void UnitSpawn(List<EnemyCharacter> prefab, int count, List<Vector3> spawnPos)

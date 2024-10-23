@@ -17,8 +17,9 @@ public class Character : FieldObject, ICustomUpdateMono
     public PopupController popupController;
     public UICharacterCostume characterCostume;
     public SpriteGroup spriteGroup;
-    public Transform popupCenter;
-    public Transform dropCenter;
+    public Transform popupCenter; //팝업 문구 중심
+    public Transform dropCenter; //아이템 드랍 중심
+    public Transform attackRangeCenter; //공격 사거리 중심
     public bool isInvincible; //true일 경우 무적
     public bool isUntargetted; //true일 경우 타겟으로 잡히지 않음
     public bool isStopScanning; //true일 경우 스캔 정지
@@ -187,9 +188,12 @@ public class Character : FieldObject, ICustomUpdateMono
             Gizmos.color = Color.cyan;
             DrawHollowCircle(myObject.position, (float)playStatus.viewRange, segments);
 
-            //공격 사거리
-            Gizmos.color = Color.red;
-            DrawHollowCircle(myObject.position, (float)playStatus.attackRange, segments);
+            if (attackRangeCenter != null)
+            {
+                //공격 사거리
+                Gizmos.color = Color.red;
+                DrawHollowCircle(attackRangeCenter.position, (float)playStatus.attackRange, segments);
+            }
 
             if (dropCenter != null)
             {

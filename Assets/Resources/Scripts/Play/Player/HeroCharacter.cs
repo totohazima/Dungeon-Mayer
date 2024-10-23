@@ -228,7 +228,7 @@ public class HeroCharacter : Character, IPointerClickHandler
             return;
         }
 
-        float distance = Vector3.Distance(myObject.position, targetUnit.position);
+        float distance = Vector3.Distance(attackRangeCenter.position, targetUnit.position);
 
         if(distance <= playStatus.attackRange)
         {
