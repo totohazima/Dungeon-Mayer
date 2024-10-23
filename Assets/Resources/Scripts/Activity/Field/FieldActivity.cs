@@ -78,77 +78,37 @@ public class FieldActivity : MonoBehaviour, ICustomUpdateMono
                 continue;
             }
 
-            if (!isBossSpawned)
+            List<EnemyCharacter> allEnemies = isBossSpawned ? bosses : monsters;
+
+            foreach (EnemyCharacter enemy in allEnemies)
             {
-                foreach (EnemyCharacter enemy in monsters)
+                if (enemy.soonAttacker.Count >= enemy.soonAttackerLimit && enemy.soonAttackerLimit != -1)
                 {
-                    if (enemy.soonAttacker.Count >= enemy.soonAttackerLimit && enemy.soonAttackerLimit != -1)
-                    {
-                        continue;
-                    }
+                    continue;
+                }
 
-                    //타겟으로 잡힌 몬스터는 미리 거리정보를 넣어줌
-                    if (hero.targetUnit != null)
-                    {
-                        shortDistance = Vector3.Distance(hero.myObject.position, hero.targetUnit.position);
-                    }
+                //타겟으로 잡힌 몬스터는 미리 거리정보를 넣어줌
+                if (hero.targetUnit != null)
+                {
+                    shortDistance = Vector3.Distance(hero.myObject.position, hero.targetUnit.position);
+                }
 
-                    float dis = Vector3.Distance(hero.myObject.position, enemy.myObject.position);
-                    if (dis < shortDistance)
-                    {
-                        shortDistance = dis;
-                        nearMonster = enemy;
-                    }
+                float dis = Vector3.Distance(hero.myObject.position, enemy.myObject.position);
+                if (dis < shortDistance)
+                {
+                    shortDistance = dis;
+                    nearMonster = enemy;
                 }
             }
-            else if(isBossSpawned)
-            {
-                foreach (EnemyCharacter enemy in bosses)
-                {
-                    if (enemy.soonAttacker.Count >= enemy.soonAttackerLimit && enemy.soonAttackerLimit != -1)
-                    {
-                        continue;
-                    }
-
-                    //타겟으로 잡힌 몬스터는 미리 거리정보를 넣어줌
-                    if (hero.targetUnit != null)
-                    {
-                        shortDistance = Vector3.Distance(hero.myObject.position, hero.targetUnit.position);
-                        nearMonster = enemy;
-                    }
-
-                    float dis = Vector3.Distance(hero.myObject.position, enemy.myObject.position);
-                    if (dis < shortDistance)
-                    {
-                        shortDistance = dis;
-                        nearMonster = enemy;
-                    }
-                }
-            }
-
 
             if (nearMonster != null)
             {
-                if (isBossSpawned)
+                foreach(EnemyCharacter enemy in  allEnemies)
                 {
-                    foreach (EnemyCharacter enemy in bosses)
+                    if(enemy.soonAttacker.Contains(hero))
                     {
-                        if (enemy.soonAttacker.Contains(hero))
-                        {
-                            enemy.soonAttacker.Remove(hero);
-                        }
+                        enemy.soonAttacker.Remove(hero);
                     }
-                }
-                else
-                {
-                    foreach (EnemyCharacter enemy in monsters)
-                    {
-                        if (enemy.soonAttacker.Contains(hero))
-                        {
-                            enemy.soonAttacker.Remove(hero);
-                        }
-                    }
-
                 }
 
                 if (hero.soonTargetter != null)
