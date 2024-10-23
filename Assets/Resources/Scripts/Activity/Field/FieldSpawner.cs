@@ -39,12 +39,12 @@ public class FieldSpawner : MonoBehaviour, ICustomUpdateMono
     {
         if(isReadyFieldAllSpawn)
         {
-            SpawnSetting(maxSpawnUnitCount);
+            MonsterSpawn(maxSpawnUnitCount);
             isReadyFieldAllSpawn = false;
         }
         else if(fieldActivity.monsters.Count < maxSpawnUnitCount && reSpawnReadyTimer >= reSpawnReadyTime)
         {
-            SpawnSetting(1);
+            MonsterSpawn(1);
             reSpawnReadyTimer = 0f;
         }
 
@@ -54,7 +54,7 @@ public class FieldSpawner : MonoBehaviour, ICustomUpdateMono
     {
         CustomUpdateManager.customUpdateMonos.Remove(this);
     }
-    protected void SpawnSetting(int count)
+    public void MonsterSpawn(int count)
     {
         List<EnemyCharacter> prefabs = new List<EnemyCharacter>();
         List<Vector3> pos = new List<Vector3>();

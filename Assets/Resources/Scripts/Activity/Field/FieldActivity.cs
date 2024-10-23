@@ -28,6 +28,7 @@ public class FieldActivity : MonoBehaviour, ICustomUpdateMono
 
     [Header("Bool")]
     public bool isBossSpawned = false;
+    public bool currentBossSpawning = false; //보스 스폰 중인지 체크
     private bool isHeroScanning = false;
     private bool isEnemyScanning = false;
     
@@ -54,7 +55,7 @@ public class FieldActivity : MonoBehaviour, ICustomUpdateMono
     {
         StartCoroutine(ScanCharacter(0.1f));
         StartCoroutine(ScanEnemy(0.1f));
-        BossSpawn();
+        BossSpawn(bossPoint);
     }
 
     protected IEnumerator ScanEnemy(float scanDelay)
@@ -172,16 +173,16 @@ public class FieldActivity : MonoBehaviour, ICustomUpdateMono
         isHeroScanning = false;
     }
 
-    protected void BossSpawn()
+    public void BossSpawn(int point)
     {
-        if (bossPoint < maxBossPoint || isBossSpawned)
+        if (point < maxBossPoint || currentBossSpawning)
         {
             return;      
         }
 
         Debug.Log("보스 소환");
         bossPoint = 0;
-
+        currentBossSpawning = true;
         //카메라 이동 연출
         CameraController_InGame camera = FieldManager.instance.cameraController;
         camera.subCameraUsable.AddCoroutine(camera.subCameraUsable.CameraBossTracking(camera.transform.position, getTransform.position, 40f, this));

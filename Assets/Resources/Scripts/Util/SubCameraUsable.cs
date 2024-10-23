@@ -77,6 +77,6 @@ public class SubCameraUsable : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
-
+        field.currentBossSpawning = false;
     }
 }
