@@ -44,7 +44,7 @@ public class TestCharacterAlgorithm_Step3 : MonoBehaviour
                 combatTimer -= Time.deltaTime;
             }
 
-            if (combatTimer <= 0f && !character.isReadyToAttack || FieldManager.instance.fields[(int)combatField].monsters.Count == 0)
+            if (combatTimer <= 0f && !character.isReadyToAttack || FieldManager.instance.fieldActivitys[(int)combatField].monsters.Count == 0)
             {
                 StartCoroutine(GoVillage());
                 yield break;

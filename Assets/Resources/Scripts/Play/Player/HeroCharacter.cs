@@ -19,9 +19,9 @@ public class HeroCharacter : Character, IPointerClickHandler
     private float randomMoveTime_Max = 10f;
     private float randomMoveTime_Min = 3f;
     [Header("Scanning Info")]
+    public EnemyCharacter soonTargetter = null;
     private float scanDelay = 0.1f;
     private bool isScanning = false;
-    public EnemyCharacter soonTargetter = null;
     [Header("Click Process Info")]
     protected bool onClickProcess;
 
@@ -83,7 +83,7 @@ public class HeroCharacter : Character, IPointerClickHandler
 
         yield return new WaitForSeconds(randomMoveTime);
 
-        Vector3 boxSize = FieldManager.instance.fields[(int)field].fieldSize;
+        Vector3 boxSize = FieldManager.instance.fieldActivitys[(int)field].fieldSize;
         // 오버랩 박스 내에서 무작위 위치 생성
         Vector3 randomPositionWithinBox = new Vector3(
             Random.Range(-boxSize.x / 2, boxSize.x / 2),
@@ -92,7 +92,7 @@ public class HeroCharacter : Character, IPointerClickHandler
         );
 
         // 현재 위치에 대해 상대적인 위치를 적용하여 이동
-        FieldActivity controlField = FieldManager.instance.fields[(int)field];
+        FieldActivity controlField = FieldManager.instance.fieldActivitys[(int)field];
         targetLocation = controlField.getTransform.position + randomPositionWithinBox;
 
         onRandomMove = false;  // 이동 종료
@@ -108,7 +108,7 @@ public class HeroCharacter : Character, IPointerClickHandler
         isScanning = true;
 
         ///주변 적 탐지가 아닌 필드 내 몬스터의 정보를 가져오는 방식
-        FieldActivity field = FieldManager.instance.fields[(int)currentField];
+        FieldActivity field = FieldManager.instance.fieldActivitys[(int)currentField];
         List<Collider> detectedColls = new List<Collider>();
         List<Collider> detectedList = new List<Collider>(); //타겟으로 잡을 수 있는 상태의 몬스터들을 담음
         float shortestDistance = Mathf.Infinity;
@@ -282,7 +282,7 @@ public class HeroCharacter : Character, IPointerClickHandler
                 onTargetFieldPos = true;
 
                 Vector3 fieldPos = Vector3.zero;
-                FieldActivity controlField = FieldManager.instance.fields[(int)targetField];
+                FieldActivity controlField = FieldManager.instance.fieldActivitys[(int)targetField];
                 Vector3 boxSize = controlField.fieldSize;
 
                 Vector3 randomPositionWithinBox = new Vector3(

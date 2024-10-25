@@ -13,7 +13,7 @@ public class FieldManager : MonoBehaviour
     public CameraController_InGame cameraController;
     public Transform spawnPool;
     public List<Transform> fieldList = new List<Transform>();
-    [HideInInspector] public List<FieldActivity> fields = new List<FieldActivity>();
+    [HideInInspector] public List<FieldActivity> fieldActivitys = new List<FieldActivity>();
     [HideInInspector] public List<FieldSpawner> fieldSpawners = new List<FieldSpawner>();
 
     [Range(0, 10)] public int spawnHeroCount = 1;
@@ -27,7 +27,7 @@ public class FieldManager : MonoBehaviour
         {
             if (fieldList[i].GetComponent<FieldActivity>() != null)
             {
-                fields.Add(fieldList[i].GetComponent<FieldActivity>());
+                fieldActivitys.Add(fieldList[i].GetComponent<FieldActivity>());
             }
             if (fieldList[i].GetComponentInChildren<FieldSpawner>() != null)
             {
@@ -44,7 +44,7 @@ public class FieldManager : MonoBehaviour
 
     protected void HeroSpawn()
     {
-        foreach(FieldActivity activity in fields)
+        foreach(FieldActivity activity in fieldActivitys)
         {
             if(activity.FieldName == FieldMap.Field.VILLAGE)
             {

@@ -33,10 +33,16 @@ public class Building : FieldObject, ICustomUpdateMono
     public Vector3 interactionRange = new Vector3(1f, 1f, 1f);
     public Transform popupTransform = null;
     private GameObject rewardText;
+    private GameObject giveItem;
     private void Awake()
     {
+        LoadPrefab();
+    }
+    
+    protected void LoadPrefab()
+    {
         rewardText = Resources.Load<GameObject>("Prefabs/FieldObject/BuildingRewardTxt");
-
+        giveItem = Resources.Load<GameObject>("Prefabs/FieldObject/GiveItem");
     }
 
     public void OnEnable()
@@ -126,7 +132,7 @@ public class Building : FieldObject, ICustomUpdateMono
     }
     protected void AddGiveBuildingItem(GameMoney.GameMoneyType type, int count, HeroCharacter hero)
     {
-        GameObject prefab = Resources.Load<GameObject>("Prefabs/FieldObject/GiveItem");
+        GameObject prefab = giveItem;
         GameObject popup = PoolManager.instance.Spawn(prefab, hero.popupCenter.position, new Vector3(0.5f, 0.5f, 0.5f)/*이 부분은 추후 이미지 사이즈가 통일될시 Vector3.One으로 대체해야함*/, Quaternion.identity, true, PoolManager.instance.spawnRoot);
 
         GiveItem popupItem = popup.GetComponent<GiveItem>();

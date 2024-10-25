@@ -48,6 +48,12 @@ public class Character : FieldObject, ICustomUpdateMono
     public Building.BuildingType targetBuilding; //내가 가야 할 건물
     protected bool onTargetFieldPos = false; //필드 내 랜덤위치를 구할 시 true로
     protected bool onTargetBuildingPos = false; //건물 도착 랜덤위치 구할 시 true로
+    protected GameObject dropItem;
+
+    void Awake()
+    {
+        LoadPrefab();
+    }
 
     public void OnEnable()
     {
@@ -75,6 +81,11 @@ public class Character : FieldObject, ICustomUpdateMono
 
         StopAllCoroutines();
     }
+
+    public virtual void LoadPrefab()
+    {
+    }
+
     public virtual void CustomUpdate()
     {       
     }

@@ -49,7 +49,7 @@ public class TestCheat : EditorWindow
 
         if (FieldManager.instance != null)
         {
-            FieldActivity field = FieldManager.instance.fields[(int)fieldMethod.controllField];
+            FieldActivity field = FieldManager.instance.fieldActivitys[(int)fieldMethod.controllField];
             fieldMethod.bossPoint = (int)EditorGUILayout.Slider("보스 포인트", field.bossPoint, 0, 100);
         }
 
@@ -71,7 +71,7 @@ public class TestCheat : EditorWindow
             Debug.LogError("FieldManager.instance is Null");
             return;
         }
-        FieldActivity field = FieldManager.instance.fields[(int)fieldMethod.controllField];
+        FieldActivity field = FieldManager.instance.fieldActivitys[(int)fieldMethod.controllField];
 
         int enoughCount = field.mySpawner.maxSpawnUnitCount - field.monsters.Count;
         field.mySpawner.MonsterSpawn(enoughCount);
@@ -84,7 +84,7 @@ public class TestCheat : EditorWindow
             Debug.LogError("FieldManager.instance is Null");
             return;
         }
-        FieldActivity field = FieldManager.instance.fields[(int)fieldMethod.controllField];
+        FieldActivity field = FieldManager.instance.fieldActivitys[(int)fieldMethod.controllField];
 
         field.BossSpawn(field.maxBossPoint);
     }

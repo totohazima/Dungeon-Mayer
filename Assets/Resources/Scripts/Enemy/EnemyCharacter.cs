@@ -44,6 +44,11 @@ public class EnemyCharacter : Character
             eventCallAnimation.callPrefab = attackPrefab;
         }
     }
+
+    public override void LoadPrefab()
+    {
+        dropItem = Resources.Load<GameObject>("Prefabs/FieldObject/DropItem");
+    }
     public override void CustomUpdate()
     {
         if(isDead)
@@ -72,7 +77,7 @@ public class EnemyCharacter : Character
 
         yield return new WaitForSeconds(randomMoveTime);
 
-        Vector3 boxSize = FieldManager.instance.fields[(int)field].fieldSize;
+        Vector3 boxSize = FieldManager.instance.fieldActivitys[(int)field].fieldSize;
         // 오버랩 박스 내에서 무작위 위치 생성
         Vector3 randomPositionWithinBox = new Vector3(
             Random.Range(-boxSize.x / 2, boxSize.x / 2),
@@ -81,7 +86,7 @@ public class EnemyCharacter : Character
         );
 
         // 현재 위치에 대해 상대적인 위치를 적용하여 이동
-        FieldActivity controlField = FieldManager.instance.fields[(int)field];
+        FieldActivity controlField = FieldManager.instance.fieldActivitys[(int)field];
         targetLocation = controlField.getTransform.position + randomPositionWithinBox;
 
         onRandomMove = false;  // 이동 종료
@@ -297,7 +302,7 @@ public class EnemyCharacter : Character
 
         myCollider.enabled = false;
 
-        FieldActivity field = FieldManager.instance.fields[(int)currentField];
+        FieldActivity field = FieldManager.instance.fieldActivitys[(int)currentField];
         if(field.monsters.Contains(this))
         {
             field.monsters.Remove(this);
@@ -324,18 +329,16 @@ public class EnemyCharacter : Character
 
         for (int i = 0; i < count; i++)
         {
-            GameObject prefab = Resources.Load<GameObject>("Prefabs/FieldObject/DropItem");
-           
-            GameObject itemObject = PoolManager.instance.Spawn(prefab, myObject.position, Vector3.one, Quaternion.identity, true, myObject.parent);
+            GameObject itemObject = PoolManager.instance.Spawn(dropItem, myObject.position, Vector3.one, Quaternion.identity, true, myObject.parent);
 
-            DropItem dropItem = itemObject.GetComponent<DropItem>();
+            DropItem dropItemScript = itemObject.GetComponent<DropItem>();
 
-            dropItem.moneyType = GameMoney.GameMoneyType.RUBY;
-            dropItem.dropCount = 1;
+            dropItemScript.moneyType = GameMoney.GameMoneyType.RUBY;
+            dropItemScript.dropCount = 1;
 
             Vector3 dropPos = GetRandomPositionInBox(dropCenter.position, dropRange);
 
-            dropItem.Drop_Animation(myObject.position, dropPos);
+            dropItemScript.Drop_Animation(myObject.position, dropPos);
         }
     }
 

@@ -54,7 +54,7 @@ public class TestAlgorithm : MonoBehaviour
             return;
         }
 
-        FieldActivity field = FieldManager.instance.fields[(int)character.currentField];
+        FieldActivity field = FieldManager.instance.fieldActivitys[(int)character.currentField];
         bool isReturn = false;
 
         foreach (EnemyCharacter enemy in field.monsters)
